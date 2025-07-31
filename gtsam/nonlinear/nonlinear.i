@@ -735,6 +735,9 @@ virtual class BatchFixedLagSmoother : gtsam::FixedLagSmoother {
                      gtsam::Rot3, gtsam::Pose3, gtsam::Similarity2, gtsam::Similarity3, gtsam::Cal3_S2, gtsam::Cal3DS2,
                      gtsam::Vector, gtsam::Matrix}>
   VALUE calculateEstimate(gtsam::Key key) const;
+  
+  gtsam::Values getInitialTheta() const;
+  gtsam::BatchFixedLagSmoother deepClone() const;
 };
 
 #include <gtsam/nonlinear/IncrementalFixedLagSmoother.h>
