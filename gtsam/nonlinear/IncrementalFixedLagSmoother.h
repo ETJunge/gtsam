@@ -138,9 +138,9 @@ class GTSAM_EXPORT IncrementalFixedLagSmoother: public FixedLagSmoother {
   const gtsam::Values& getInitialTheta() const { return initialTheta_; }
 
   /** Deep clone the current Smoother 
-   * @param rewrite deep clone the internal ISAM2 object, default false
+   * @param rewrite deep clone the internal ISAM2 object, default true
    */
-  const IncrementalFixedLagSmoother deepClone(const bool rewrite = false);
+  const IncrementalFixedLagSmoother deepClone(const bool rewrite = true);
 
   /// force relinearize the internal ISAM2 object.
   const void forceRelinearize();
