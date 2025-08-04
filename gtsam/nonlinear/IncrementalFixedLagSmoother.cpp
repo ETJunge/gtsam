@@ -22,9 +22,6 @@
 #include <gtsam/nonlinear/IncrementalFixedLagSmoother.h>
 #include <gtsam/nonlinear/BayesTreeMarginalizationHelper.h>
 #include <gtsam/base/debug.h>
-// #include <gtsam/base/serialization.h>
-// #include <gtsam/base/serializationTestHelpers.h>
- #include <gtsam/nonlinear/serializationNonlinear.h>
 
 namespace gtsam {
 
@@ -221,11 +218,7 @@ const IncrementalFixedLagSmoother IncrementalFixedLagSmoother::deepClone(
   std::string fileName = "saved_solver.xml";
   ISAM2 outputIsam;
 
-  // smootherString_ = serializeGraph(getFactors());
-  // NonlinearFactorGraph::shared_ptr copiedFactor =
-  // deserializeGraph(smootherString_);
   if (rewrite) {
-    // outputIsam = serializationDeepClone(isam_, fileName);
     outputIsam = isam_.deepClone(isam_.params());
   } else {
     outputIsam = isam_;
@@ -235,8 +228,8 @@ const IncrementalFixedLagSmoother IncrementalFixedLagSmoother::deepClone(
   Values newInitialTheta(initialTheta_);
   outputSmoother.setInitialTheta(newInitialTheta);
 
-  outputSmoother.updateKeyTimestampMap(keyTimestampMap_);
-  // outputSmoother.setKeyTimestampMap(keyTimestampMap_, timestampKeyMap_);
+  // outputSmoother.updateKeyTimestampMap(keyTimestampMap_);
+  outputSmoother.setKeyTimestampMap(keyTimestampMap_, timestampKeyMap_);
   return outputSmoother;
 };
 
