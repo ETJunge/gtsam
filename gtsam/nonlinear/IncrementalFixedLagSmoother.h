@@ -143,7 +143,7 @@ class GTSAM_EXPORT IncrementalFixedLagSmoother: public FixedLagSmoother {
   const IncrementalFixedLagSmoother deepClone(const bool rewrite = true);
 
   /// force relinearize the internal ISAM2 object.
-  const void forceRelinearize();
+  void forceRelinearize();
 
  protected:
 

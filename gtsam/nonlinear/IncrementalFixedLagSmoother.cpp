@@ -231,13 +231,12 @@ const IncrementalFixedLagSmoother IncrementalFixedLagSmoother::deepClone(
   // outputSmoother.updateKeyTimestampMap(keyTimestampMap_);
   outputSmoother.setKeyTimestampMap(keyTimestampMap_, timestampKeyMap_);
   return outputSmoother;
-};
+}
 
 /* ************************************************************************* */
-const void IncrementalFixedLagSmoother::forceRelinearize() {
+void IncrementalFixedLagSmoother::forceRelinearize() {
   isam_.update(NonlinearFactorGraph(), Values(), FactorIndices(), {}, {}, {},
                true);
-  return;
 }
 
 /* ************************************************************************* */

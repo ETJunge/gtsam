@@ -765,7 +765,7 @@ virtual class IncrementalFixedLagSmoother : gtsam::FixedLagSmoother {
   gtsam::IncrementalFixedLagSmoother deepClone() const;
   gtsam::IncrementalFixedLagSmoother deepClone(const bool rewrite) const;
 
-  void forceRelinearize() const;
+  void forceRelinearize();
 };
 
 #include <gtsam/nonlinear/ExtendedKalmanFilter.h>
