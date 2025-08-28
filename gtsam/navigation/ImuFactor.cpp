@@ -68,7 +68,7 @@ PreintegratedImuMeasurementsT<PreintegrationType>::deepClone() const {
 
   // 3. Copy over all integration results
   copy.deltaTij_ = this->PreintegrationType::deltaTij_;
-  copy.preintMeasCov_(this->preintMeasCov_);
+  copy.preintMeasCov_ = this->preintMeasCov_;
 
   // 4. If the PreintegrationType has extra fields, copy them too
   if constexpr (std::is_base_of<ManifoldPreintegration,
