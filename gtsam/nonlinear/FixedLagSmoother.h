@@ -28,7 +28,9 @@
 #include <map>
 #include <vector>
 
+#if GTSAM_ENABLE_BOOST_SERIALIZATION
 #include <boost/serialization/assume_abstract.hpp>
+#endif
 
 namespace gtsam {
 
