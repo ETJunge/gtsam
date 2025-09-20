@@ -67,6 +67,7 @@ void CustomFactor::print(const std::string &s, const KeyFormatter &keyFormatter)
     f = true;
   }
   std::cout << "\n";
+  std::cout << "  Infomation: " << this->factor_info_ << "\n";
   if (this->noiseModel_)
     this->noiseModel_->print("  noise model: ");
   else
