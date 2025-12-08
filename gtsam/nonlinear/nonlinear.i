@@ -806,6 +806,11 @@ virtual class FixedLagSmoother {
                                        const gtsam::Values &newTheta,
                                        const gtsam::FixedLagSmootherKeyTimestampMap &timestamps,
                                        const gtsam::FactorIndices &factorsToRemove);
+  gtsam::FixedLagSmootherResult update(const gtsam::NonlinearFactorGraph &newFactors,
+                                       const gtsam::Values &newTheta,
+                                       const gtsam::FixedLagSmootherKeyTimestampMap &timestamps,
+                                       const gtsam::FactorIndices &factorsToRemove,
+                                       const double adaptiveSmootherLag);
   gtsam::Values calculateEstimate() const;
 };
 
@@ -825,6 +830,9 @@ virtual class BatchFixedLagSmoother : gtsam::FixedLagSmoother {
                      gtsam::Rot3, gtsam::Pose3, gtsam::SL4, gtsam::Similarity2, gtsam::Similarity3,
                      gtsam::Cal3_S2, gtsam::Cal3DS2, gtsam::Vector, gtsam::Matrix}>
   VALUE calculateEstimate(gtsam::Key key) const;
+  
+  gtsam::Values getInitialTheta() const;
+  gtsam::BatchFixedLagSmoother deepClone() const;
 };
 
 #include <gtsam/nonlinear/IncrementalFixedLagSmoother.h>
@@ -834,12 +842,22 @@ virtual class IncrementalFixedLagSmoother : gtsam::FixedLagSmoother {
   IncrementalFixedLagSmoother(double smootherLag, const gtsam::ISAM2Params& parameters);
 
   void print(string s = "IncrementalFixedLagSmoother:\n") const;
+  string equalsDetail(const gtsam::FixedLagSmoother& rhs, double tol);
 
   gtsam::Matrix marginalCovariance(gtsam::Key key) const;
   gtsam::ISAM2Params params() const;
 
   gtsam::NonlinearFactorGraph getFactors() const;
   gtsam::ISAM2 getISAM2() const;
+  gtsam::ISAM2 getSubISAM2() const;
+  gtsam::Values getInitialTheta() const;
+
+  gtsam::Values calculateSubEstimate(double adaptiveSmootherLag, gtsam::ISAM2Params& isamParam) const;
+
+  gtsam::IncrementalFixedLagSmoother deepClone() const;
+  gtsam::IncrementalFixedLagSmoother deepClone(const bool rewrite) const;
+
+  void forceRelinearize();
 };
 
 #include <gtsam/nonlinear/ExtendedKalmanFilter.h>

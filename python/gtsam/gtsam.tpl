@@ -22,7 +22,6 @@
 
 // These are the included headers listed in `gtsam.i`
 {includes}
-#include <boost/serialization/export.hpp>
 
 // Export classes for serialization
 {boost_class_export}
