@@ -18,7 +18,6 @@
 
 // These are the included headers listed in `gtsam_unstable.i`
 {includes}
-#include <boost/serialization/export.hpp>
 
 {boost_class_export}
 
